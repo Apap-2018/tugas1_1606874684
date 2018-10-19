@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Jabatan</title>
+		
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include= "fragments/fragment :: js" th:remove="tag"></object>
+	
+		<style>
+			table{
+				width: 600px;
+			}
+			tr, td {
+			    padding: 10px;
+			    text-align: left;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<nav th:replace="fragments/fragment :: navbar"></nav>
+		<div class="container-fluid">
+			<h2 th:text="'Detail Jabatan '+${jabatan.getNama()}">Lihat Data Pegawai</h2>
+			
+			<table>
+				<tr>
+					<td>Nama</td>
+					<td th:text="${jabatan.getNama()}"></td>
+				</tr>
+				<tr>
+					<td>Deskripsi</td>
+					<td th:text="${jabatan.getDeskripsi()}"></td>
+				</tr>
+				<tr>
+					<td>Gaji Pokok</td>
+					<td th:text="'Rp'+${jabatan.getGaji_pokok()}"></td>
+				</tr>
+			</table>
+			<p></p>
+			<div class="row">
+			<form th:action="@{/jabatan/ubah/} + ${jabatan.getId()}" method="GET" class="col-md-1">
+				<button type="submit" class="btn btn-primary">Ubah</button>
+			</form>
+			
+			<form th:action="@{/jabatan/hapus/} + ${jabatan.getId()}" method="POST"class="col-md-1" >
+				<button type="submit" class="btn btn-primary">Hapus</button>
+			</form>
+			<input type="hidden" th:field="*{jabatan.id}" />
+			</div>
+		</div>
+	</body>
+</html>
+	

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Lihat Semua Jabatan</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include= "fragments/fragment :: js" th:remove="tag"></object>
+		
+		<style>
+			table{
+				width: 90%;
+			}
+			tr, td {
+			    padding: 6px;
+			    
+			}
+		</style>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+	<div class="container-fluid">
+	<h2>Lihat Semua Jabatan</h2>
+	
+	<table>
+		<tr>
+			<td><b>No</b></td>
+			<td><b>Nama</b></td>
+			<td><b>Deskripsi</b></td>
+			<td><b>Gaji Pokok</b></td>
+			<td><b>Jumlah Pegawai</b></td>
+		</tr>
+		<tr th:each="jabatan, iterationStatus : *{listJabatan}">
+			<td th:text="${iterationStatus.count}" align="center"></td>
+			<td th:text="${jabatan.nama}"></td>
+			<td th:text="${jabatan.deskripsi}"></td>
+			<td th:text="'Rp'+${jabatan.gaji_pokok}"></td>
+			<td th:text="${jabatan.jumlahPegawai()}" align="center"></td>
+		</tr>
+	</table>
+	</div>	
+</body>
+
+</html>
