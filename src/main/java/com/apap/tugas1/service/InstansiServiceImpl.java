@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apap.tugas1.model.InstansiModel;
+import com.apap.tugas1.model.ProvinsiModel;
 import com.apap.tugas1.repository.InstansiDB;
 
 @Service
@@ -24,4 +25,16 @@ public class InstansiServiceImpl implements InstansiService{
 	public List<InstansiModel> getAllInstansi(){
 		return instansiDb.findAll();
 	}
+	
+	@Override
+	 public List<InstansiModel> getInstansiFromProvinsi(ProvinsiModel provinsi) {
+		return instansiDb.findByProvinsi(provinsi);
+	 }
+/**
+	@Override
+	public InstansiModel getIdByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	**/
 }

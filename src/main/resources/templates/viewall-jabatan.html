@@ -6,6 +6,12 @@
 		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 		<object th:include= "fragments/fragment :: js" th:remove="tag"></object>
 		
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    	<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	
 		<style>
 			table{
 				width: 90%;
@@ -22,7 +28,7 @@
 	<div class="container-fluid">
 	<h2>Lihat Semua Jabatan</h2>
 	
-	<table>
+	<table id="lihatJabatan">
 		<tr>
 			<td><b>No</b></td>
 			<td><b>Nama</b></td>
@@ -38,7 +44,14 @@
 			<td th:text="${jabatan.jumlahPegawai()}" align="center"></td>
 		</tr>
 	</table>
-	</div>	
-</body>
+	</div>
 
+	<script>
+	 $(document).ready( function () {
+	     $('#lihatJabatan').DataTable();
+	 } );
+	</script>
+	
+	</body>
+	
 </html>

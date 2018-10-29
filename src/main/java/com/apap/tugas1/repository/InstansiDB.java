@@ -1,8 +1,12 @@
 package com.apap.tugas1.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.apap.tugas1.model.InstansiModel;
+import com.apap.tugas1.model.ProvinsiModel;
 
 public interface InstansiDB extends JpaRepository<InstansiModel, Long>{
 	InstansiModel findById(long id);
+	List<InstansiModel> findByProvinsi(ProvinsiModel provinsi);
 }

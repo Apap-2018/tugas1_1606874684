@@ -9,7 +9,7 @@
 	
 		<style>
 			table{
-				width: 400px;
+				width: 600px;
 			}
 			tr, td {
 			    padding: 10px;
@@ -38,11 +38,11 @@
 				</tr>
 				<tr>
 					<td>Tanggal Lahir</td>
-					<td th:text="${pegawai.getTanggal_lahir()}"></td>
+					<td th:text="${pegawai.getTanggalLahir()}"></td>
 				</tr>
 				<tr>
 					<td>Tahun Masuk</td>
-					<td th:text="${pegawai.getTahun_masuk()}"></td>
+					<td th:text="${pegawai.getTahunMasuk()}"></td>
 				</tr>
 				<tr>
 					<td>Nama Instansi</td>
@@ -61,7 +61,10 @@
 					<td th:text="'Rp'+${pegawai.gajiTotal()}"></td>
 				</tr>
 			</table>
-			
+			<div class="row">
+			<form th:action="@{/pegawai/ubah/}" method="POST" class="col-md-1">
+				<button type="submit" class="btn btn-primary">Ubah</button>
+			</form>
 		</div>
 	</body>
 </html>

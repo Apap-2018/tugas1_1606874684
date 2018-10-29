@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apap.tugas1.model.InstansiModel;
+import com.apap.tugas1.model.JabatanModel;
 import com.apap.tugas1.model.PegawaiModel;
+import com.apap.tugas1.model.ProvinsiModel;
 import com.apap.tugas1.repository.PegawaiDB;
 
 @Service
@@ -16,8 +18,8 @@ public class PegawaiServiceImpl implements PegawaiService{
 	@Autowired
 	private PegawaiDB pegawaiDb;
 	
-//	@Autowired
-//	private InstansiService instansiService; 
+	@Autowired
+	private InstansiService instansiService; 
 	
 	@Override
 	public PegawaiModel getDetailPegawaiByNip (String nip) {
@@ -28,39 +30,31 @@ public class PegawaiServiceImpl implements PegawaiService{
 		return pegawaiDb.findByInstansiOrderByTanggalLahirAsc(instansiModel);
 	}
 	
-/**	@Override
-	public void addPegawai(PegawaiModel pegawai){
-		// ID instansi (4 digit) -> instansi. search ID. 
-		String idInstansi = instansiService.getIdByName(pegawai.getInstansi());
-		
-		// Tanggal lahir (6 digit) dd-MM-yy. 06-12-1997. 061297.
-		String ttl = pegawai.getTanggal_lahir() 
-		
-		// Tahun mulai (4 digit)
-		String tahunMulai = pegawai.getTahun_masuk();
-				
-		// 2 digit tgl lahir dan tahun mulai yang sama.
-		int count = //query db yg tgl lahir sm tahun masuk sama.
-		// if count = 0
-			String digitMasuk = "01";
-		// count > 0
-			int digit = count + 1;
-			if(digitMasuk.length() < 2)
-				String digitMasuk = "0" + digit;
-			else
-				String digitMasuk = digit + "";
-			
-		String NIP = new StringBuilder()
-				.append(idInstansi)
-				.append(ttl)
-				.append(tahunMulai)
-				.append(digitMasuk)
-				.toString();
-		
-		pegawai.setNip(NIP);
-
-		pegawaiDb.save(pegawai);
+	@Override
+	public List<PegawaiModel> findPegawaiByTahunMasukAndInstansi(String tahunMasuk, InstansiModel instansi) {
+		return pegawaiDb.findByTahunMasukAndInstansi(tahunMasuk, instansi);
 	}
-**/	
+
+	@Override
+	public List<PegawaiModel> findPegawaiByInstansiAndJabatan(InstansiModel instansi, JabatanModel jabatan) {
+		return pegawaiDb.findByInstansiAndJabatan(instansi, jabatan);
+	}
+
+	@Override
+	public List<PegawaiModel> findPegawaiByInstansi(InstansiModel instansi) {
+		return pegawaiDb.findByInstansi(instansi);
+	}
+
+	@Override
+	public void addPegawai(PegawaiModel pegawai) {
+		
+		
+	}
+
+	@Override
+	public List<PegawaiModel> findAll() {
+		return pegawaiDb.findAll();
+	}
+	
 }
 

@@ -36,13 +36,13 @@ public class PegawaiModel implements Serializable{
 	private String tempat_lahir;
 	
 	@NotNull
-	@Column(name = "tanggal_lahir", nullable = false)
+	@Column(name = "tanggalLahir", nullable = false)
 	private Date tanggalLahir;
 	
 	@NotNull
 	@Size(max = 255)
-	@Column(name = "tahun_masuk", nullable = false)
-	private String tahun_masuk;
+	@Column(name = "tahunMasuk", nullable = false)
+	private String tahunMasuk;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_instansi", referencedColumnName = "id", nullable = false)
@@ -57,6 +57,9 @@ public class PegawaiModel implements Serializable{
             inverseJoinColumns = {@JoinColumn(name = "id_jabatan")})
     private List<JabatanModel> jabatan;
 
+	@OneToMany(mappedBy = "pegawai", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<JabatanPegawaiModel> jabatanPegawaiList;
+	
 	public JabatanModel getJabatanTerbesar() {
 		JabatanModel jabatanFix = jabatan.get(0);
 		for(int i=0; i<jabatan.size(); i++) {
@@ -68,6 +71,14 @@ public class PegawaiModel implements Serializable{
 		return jabatanFix;
 	}
 	
+	public List<JabatanPegawaiModel> getJabatanPegawaiList() {
+		return jabatanPegawaiList;
+	}
+
+	public void setJabatanPegawaiList(List<JabatanPegawaiModel> jabatanPegawaiList) {
+		this.jabatanPegawaiList = jabatanPegawaiList;
+	}
+
 	public Double gajiTotal() {
 		Double gajiPokok = this.getJabatanTerbesar().getGaji_pokok();
 		Double tunjangan = this.getInstansi().getProvinsi().getPresentase_tunjangan();
@@ -106,20 +117,20 @@ public class PegawaiModel implements Serializable{
 		this.tempat_lahir = tempat_lahir;
 	}
 
-	public Date getTanggal_lahir() {
+	public Date getTanggalLahir() {
 		return tanggalLahir;
 	}
 
-	public void setTanggal_lahir(Date tanggal_lahir) {
-		this.tanggalLahir = tanggal_lahir;
+	public void setTanggalLahir(Date tanggalLahir) {
+		this.tanggalLahir = tanggalLahir;
 	}
 
-	public String getTahun_masuk() {
-		return tahun_masuk;
+	public String getTahunMasuk() {
+		return tahunMasuk;
 	}
 
-	public void setTahun_masuk(String tahun_masuk) {
-		this.tahun_masuk = tahun_masuk;
+	public void setTahunMasuk(String tahunMasuk) {
+		this.tahunMasuk = tahunMasuk;
 	}
 
 	public InstansiModel getInstansi() {

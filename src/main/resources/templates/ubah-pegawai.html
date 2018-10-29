@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 	<head>
-		<title>Tambah Pegawai</title>
+		<title>Ubah Pegawai</title>
 		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 		<object th:include= "fragments/fragment :: js" th:remove="tag"></object>
 		
@@ -21,8 +21,8 @@
 		<nav th:replace="fragments/fragment :: navbar"></nav>
 		<div class="container-fluid">
 		
-		<h3>Tambah Pegawai</h3>
-		<form th:action="@{/pegawai/tambah}" th:object="${pegawai}" method="POST">
+		<h3>Ubah Pegawai</h3>
+		<form th:action="@{/pegawai/ubah}" th:object="${pegawai}" method="POST">
 		
 		<table>
 			<tr>
@@ -46,7 +46,7 @@
 				<td>
 					<select id="provinsi" name="idProvinsi" class="form-control">
 					<option disabled="disabled" selected="selected" >Pilih Provinsi</option>
-					<option th:each="provinsi : ${listProvinsi}" th:value="${provinsi.id}" th:text="${provinsi.nama}" />
+					<option th:each="provinsi : ${listProvinsi}" th:value="${provinsi.id}" th:text="${provinsi.nama}"/>
 					</select>
 				</td>
 			</tr>
